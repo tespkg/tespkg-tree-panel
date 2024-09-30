@@ -270,6 +270,7 @@ const queryRE = new RegExp(/(\w+)\s+in\s+\(([\w|,]+)\)/)
 
 // TODO(jackieli): only works with default template...
 function parseSelected(query: string): { [type: string]: string[] } {
+  query = query.replace(/["']/g, '')
   if (!query.trim()) {
     return {}
   }
