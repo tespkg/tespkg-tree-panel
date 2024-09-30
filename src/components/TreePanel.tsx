@@ -266,7 +266,7 @@ export const TreePanel: React.FC<Props> = ({ options, data, width, height, repla
 }
 
 // match "type in (id1,id2,id3)" where "type" is group 1 and "id1,id2,id3" is group 2
-const queryRE = new RegExp(/(\w+)\s+in\s+\(([\w|,]+)\)/)
+const queryRE = new RegExp(/(\w+)\s+in\s+\(([\w|\W]+)\)/)
 
 // TODO(jackieli): only works with default template...
 function parseSelected(query: string): { [type: string]: string[] } {
