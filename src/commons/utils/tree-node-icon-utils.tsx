@@ -1,43 +1,43 @@
-import { CONTINENTS } from 'commons/constants/continent-names'
-import { TreeNodeData } from 'commons/types/TreeNodeData'
-import { TREE_NODE_DATA_TYPES } from 'commons/constants/tree-node-data-types'
-import { OPERATION_TYPES } from 'commons/constants/operation-types'
-import { COUNTRIES } from 'commons/constants/country-codes'
+import {CONTINENTS} from 'commons/constants/continent-names'
+import {TreeNodeData} from 'commons/types/TreeNodeData'
+import {TREE_NODE_DATA_TYPES} from 'commons/constants/tree-node-data-types'
+import {OPERATION_TYPES} from 'commons/constants/operation-types'
+import {COUNTRIES} from 'commons/constants/country-codes'
 import TreeNodeIcon from 'components/tree-node-icon/TreeNodeIcon'
-import { stringToUpperUnderscored } from './string-utils'
+import {stringToUpperUnderscored} from './string-utils'
 import React from 'react'
 import * as Constants from 'commons/constants/tree-node-icon-constants'
 
 export const getTreeNodeIcon = (data: TreeNodeData) => {
   const svgPath = getTreeNodeSvgPath(data) ?? Constants.UNKNOWN_SVG_PATH
-  return <TreeNodeIcon svgPath={svgPath} />
+  return <TreeNodeIcon svgPath={svgPath}/>
 }
 
 const getTreeNodeSvgPath = (data: TreeNodeData): string | undefined => {
-  if (data) {
-    switch (data.type?.toLowerCase()) {
-      case TREE_NODE_DATA_TYPES.COMPANY:
-        return Constants.COMPANY_SVG_PATH
-      case TREE_NODE_DATA_TYPES.OPERATED:
-        return getOperatedTreeNodeIcon(data.name)
-      case TREE_NODE_DATA_TYPES.CONTINENT:
-        return getContinentTreeNodeIcon(data.name)
-      case TREE_NODE_DATA_TYPES.COUNTRY:
-        return getCountryTreeNodeIcon(data.name)
-      case TREE_NODE_DATA_TYPES.BLOCK:
-        return Constants.BLOCK_SVG_PATH
-      case TREE_NODE_DATA_TYPES.COMPLETION:
-        return Constants.COMPLETION_SVG_PATH
-      case TREE_NODE_DATA_TYPES.FIELD:
-        return Constants.FIELD_SVG_PATH
-      case TREE_NODE_DATA_TYPES.REGION:
-        return Constants.REGION_SVG_PATH
-      case TREE_NODE_DATA_TYPES.RESERVOIR:
-        return Constants.RESERVOIR_SVG_PATH
-      case TREE_NODE_DATA_TYPES.STATION:
-        return Constants.STATION_SVG_PATH
-      case TREE_NODE_DATA_TYPES.WELL:
-        return Constants.WELL_SVG_PATH
+  if (data && data.type) {
+    const type = data.type
+    if (type.includes(TREE_NODE_DATA_TYPES.COMPANY)) {
+      return Constants.COMPANY_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.OPERATED)) {
+      return getOperatedTreeNodeIcon(data.name)
+    } else if (type.includes(TREE_NODE_DATA_TYPES.CONTINENT)) {
+      return getContinentTreeNodeIcon(data.name)
+    } else if (type.includes(TREE_NODE_DATA_TYPES.COUNTRY)) {
+      return getCountryTreeNodeIcon(data.name)
+    } else if (type.includes(TREE_NODE_DATA_TYPES.BLOCK)) {
+      return Constants.BLOCK_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.COMPLETION)) {
+      return Constants.COMPLETION_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.FIELD)) {
+      return Constants.FIELD_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.REGION)) {
+      return Constants.REGION_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.RESERVOIR)) {
+      return Constants.RESERVOIR_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.STATION)) {
+      return Constants.STATION_SVG_PATH
+    } else if (type.includes(TREE_NODE_DATA_TYPES.WELL)) {
+      return Constants.WELL_SVG_PATH
     }
   }
   return undefined
